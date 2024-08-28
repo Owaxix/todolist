@@ -1,42 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import TodoInput from "./Components/TodoInput";
+import TodoList from "./Components/TodoList";
 
-// TodoInput component for adding new tasks to the todo list
-export const TodoInput = (props) => {
-  // State to store the text input value
-  const [inputText, setInputText] = React.useState("");
+function App() {
+  // State to store the list of ToDo items
+  const [listTodo, setListTodo] = useState(() => {
+    // Retrieve the list from localStorage on initial render
+    const savedTodos = localStorage.getItem("listTodo");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
 
-  // Function to handle Enter key press for adding a new task
-  const handleEnterPress = (e) => {
-    if (e.keycode === 13) {
-      // Check if the Enter key is pressed
-      props.addList(inputText); // Call the addList function passed via props
-      setInputText(""); // Clear the input field
+  // Save the to-do list to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("listTodo", JSON.stringify(listTodo));
+  }, [listTodo]);
+
+  // Function to add a new item to the ToDo list
+  const AddList = (inputText) => {
+    if (inputText.trim() !== "") {
+      setListTodo((prevList) => [...prevList, inputText]);
     }
   };
 
+  // Function to delete an item from the ToDo list
+  const deleteListItem = (key) => {
+    setListTodo((prevList) => prevList.filter((_, index) => index !== key));
+  };
+
+  // Function to edit an item in the ToDo list
+  const editListItem = (key, newText) => {
+    setListTodo((prevList) =>
+      prevList.map((item, index) => (index === key ? newText : item))
+    );
+  };
+
   return (
-    <div className="input-container">
-      {/* Input field for entering the task */}
-      <input
-        type="text"
-        className="input-box-todo"
-        placeholder="Enter Your Todo"
-        value={inputText} // Bind the input value to the inputText state
-        onChange={(e) => setInputText(e.target.value)} // Update inputText on change
-        onKeyDown={handleEnterPress} // Handle Enter key press
-      />
-      {/* Button to add the task */}
-      <button
-        className="add-btn"
-        onClick={() => {
-          props.addList(inputText); // Call the addList function on button click
-          setInputText(""); // Clear the input field
-        }}
-      >
-        ADD Task
-      </button>
+    <div className="main-container">
+      <div className="center-container">
+        <TodoInput addList={AddList} />
+        <h1 className="App-heading">TODO</h1>
+        <hr />
+        {listTodo.map((listItem, i) => (
+          <TodoList
+            item={listItem}
+            key={i}
+            index={i}
+            deletItem={deleteListItem}
+            editItem={editListItem} // Pass the edit function to TodoList
+          />
+        ))}
+      </div>
     </div>
   );
-};
+}
 
-export default TodoInput;
+export default App;

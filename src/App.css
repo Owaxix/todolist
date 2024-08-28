@@ -1,18 +1,13 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-body{
+
+body {
   background-color: #333;
 }
-/* .App h1 {
-  text-align: center;  
-  margin: 30px , 30px;    
-  font-size: 36px;     
-  color: #fdfdfd;         
-  font-weight: bold;   
-} */
-.main-container{
+
+.main-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,64 +15,63 @@ body{
   color: rgb(255, 255, 255);
 }
 
-.center-container{
+.center-container {
   height: 600px;
   width: 450px;
 }
-.app-heading{
+
+.app-heading {
   padding: 4px;
-  color: white;  
-  /* text-align: center; */
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-transform: uppercase;
 }
-.input-container{
+
+.input-container {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
 }
-.input-box-todo{
+
+.input-box-todo {
   margin-left: 10px;
   width: 80%;
   height: 40px;
   border-radius: 14px;
-  border:1px solid black;
-  padding-left: 10px;  
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+  border: 1px solid black;
+  padding-left: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   outline: none;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: large;
 }
-.add-btn{
-  width:120px;
-  height:40px;
+
+.add-btn {
+  width: 120px;
+  height: 40px;
   border-radius: 5px;
-  border:none;
-  background-color:#337ddf;
+  border: none;
+  background-color: #337ddf;
   color: white;
   font-weight: 500;
   font-size: 18px;
-  margin-left: 10px;  
+  margin-left: 10px;
   cursor: pointer;
   box-shadow: 0px 5px 10px rgba(11, 10, 10, 0.3);
   transition: 0.3s;
 }
-.add-btn:active{
+
+.add-btn:active {
   box-shadow: none;
 }
-.list-container{
-  display: flex;
-  align-items: center;
-  margin-top: 5px;
-}
-.list-item{
+
+.list-item {
   list-style-type: none;
-  /* background-color: #596e8b; */
-  border:2px solid rgb(161, 158, 158);
-  color:white;
-  padding:3px;
+  border: 2px solid rgb(161, 158, 158);
+  color: white;
+  padding: 3px;
   padding-left: 5px;
-  border-radius: 5px; 
+  border-radius: 5px;
   width: 100%;
   height: 30px;
   display: flex;
@@ -85,44 +79,38 @@ body{
   position: relative;
   margin-top: 10px;
 }
-.icons{
+
+.icons {
   position: absolute;
   right: 10px;
+  display: flex;
+  gap: 10px; /* Space between the icons */
 }
-.icons i{
+
+.icons i {
   margin: 4px;
   font-size: large;
   cursor: pointer;
-  transition: 0.1s;   
+  transition: 0.1s;
 }
-.icons i:hover{
-  transform: scale(1.2);  
+
+.icons i:hover {
+  transform: scale(1.2);
 }
-.icon-delete:hover{
+
+.icon-delete:hover {
   color: red;
 }
 
-.icons {
-  display: flex;
-  gap: 10px; /* Space between the icons */
-  
-}
-
-.icon-edit:hover{
+.icon-edit:hover {
   color: blue;
 }
-
-/* Add this for the edit input field */
 .edit-input {
-  width: 100%;
-  padding: 5px;
+  width: calc(100% - 60px); /* Adjust width considering the space for icons */
+  height: 25px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding-left: 5px;
+  margin-left: 5px;
   font-size: 16px;
-  border: none;
-  background: transparent; /* Remove the white background */
-  color: inherit; /* Keep the text color consistent */
-  outline: none; /* Remove the default input outline */
-}
-
-.edit-input::placeholder {
-  color: #aaa; /* Optional: style the placeholder text */
 }
